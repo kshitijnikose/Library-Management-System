@@ -16,21 +16,18 @@ public class BookController {
     @Autowired
     private BookService bookService;
 
-    // Add a new book
     @PostMapping
     public ResponseEntity<Book> addBook(@RequestBody Book book) {
         Book savedBook = bookService.addBook(book);
         return ResponseEntity.ok(savedBook);
     }
 
-    // Get all books
     @GetMapping
     public ResponseEntity<List<Book>> getAllBooks() {
         List<Book> books = bookService.getAllBooks();
         return ResponseEntity.ok(books);
     }
 
-    // Get a book by its ID
     @GetMapping("/{id}")
     public ResponseEntity<Book> getBookById(@PathVariable int id) {
         Book book = bookService.getBookById(id);
@@ -41,7 +38,6 @@ public class BookController {
         }
     }
 
-    // Delete a book by its ID
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteBook(@PathVariable int id) {
         boolean deleted = bookService.deleteBook(id);
@@ -52,7 +48,6 @@ public class BookController {
         }
     }
 
-    // Update availability status of a book
     @PatchMapping("/{id}/availability")
     public ResponseEntity<Void> updateAvailability(@PathVariable int id,
             @RequestParam boolean available) {
